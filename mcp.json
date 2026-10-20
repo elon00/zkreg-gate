@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "qmoosa-reality-gate": {
+      "command": "node",
+      "args": ["dist/index.js", "--mcp"],
+      "env": {
+        "QUICKNODE_RPC": "https://api.quicknode.com/demo",
+        "PQC_STANDARD": "NIST-FIPS-204"
+      }
+    }
+  }
+}
