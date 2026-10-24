@@ -1,12 +1,33 @@
-{
-  "mcpServers": {
-    "qmoosa-reality-gate": {
-      "command": "node",
-      "args": ["dist/index.js", "--mcp"],
-      "env": {
-        "QUICKNODE_RPC": "https://api.quicknode.com/demo",
-        "PQC_STANDARD": "NIST-FIPS-204"
+﻿{
+  "name": "zkreg-gate-mcp",
+  "version": "1.0.0",
+  "description": "Zkreg Gate Model Context Protocol Server",
+  "tools": [
+    {
+      "name": "audit_protocol_invariants",
+      "description": "Audit system configuration and execution against core Zkreg Gate invariants",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "context": { "type": "string" },
+          "evaluation_metric": { "type": "string" }
+        },
+        "required": ["context"]
+      }
+    },
+    {
+      "name": "disburse_micro_grant",
+      "description": "Trigger an automated micro-escrow disbursement for verified protocol operations",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "category": { "type": "string" },
+          "recipient": { "type": "string" },
+          "amount_wei": { "type": "string" },
+          "proof_hash": { "type": "string" }
+        },
+        "required": ["category", "recipient", "amount_wei"]
       }
     }
-  }
+  ]
 }
