@@ -21,4 +21,4 @@ jobs:
       - name: Rust format and compilation (not a ZK verifier)
         run: |
           cargo fmt --check
-          cargo check --locked
+          cargo check --offline
