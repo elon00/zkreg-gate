@@ -95,8 +95,9 @@ class IntegrityGateTests(unittest.TestCase):
 
     def test_duplicate_paths(self):
         self.artifacts["proof"]["path"] = "verification_key.json"
+        self.artifacts["proof"]["sha256"] = self.artifacts["verification_key"]["sha256"]
         self.write_manifest()
-        with self.assertRaises(GateError):
+        with self.assertRaisesRegex(GateError, "duplicate artifact path"):
             verify(self.manifest, self.pin)
 
     def test_invalid_digest(self):
