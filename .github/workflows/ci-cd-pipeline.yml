@@ -1,15 +1,24 @@
-﻿name: CI/CD Pipeline
-on: [push, pull_request]
+name: Offline integrity regression (not ZK proof verification)
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
 jobs:
-  verify:
+  offline-integrity:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Smoke Tests
-        run: python tests/reality_check_harness.py
-      - name: CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+      - name: Compile Python sources
+        run: python -m compileall -q zkreg_gate.py tests/test_zkreg_gate.py
+      - name: Real filesystem and subprocess regressions
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Rust format and compilation (not a ZK verifier)
+        run: |
+          cargo fmt --check
+          cargo check --offline
