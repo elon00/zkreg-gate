@@ -1,4 +1,8 @@
-﻿target/
-*.exe
-*.pdb
-
+﻿node_modules/
+dist/
+target/
+.cache/
+*.log
+.env
+.DS_Store
+Thumbs.db
