@@ -1,9 +1,9 @@
-﻿name: CI & Invariant Verification
+name: CI & Invariant Verification
 on: [push, pull_request]
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Verify Gate Invariants
         run: echo 'Verifying qmoosa-settle-zk-compliance-tests invariants...'
